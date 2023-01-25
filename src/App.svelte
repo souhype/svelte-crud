@@ -143,7 +143,7 @@
         ><span class="material-symbols-outlined"> remove_done </span></button
       >
       <button on:click={removeChecked}
-        ><span class="material-symbols-outlined"> clear_all </span></button
+        ><span class="material-symbols-outlined"> delete_sweep </span></button
       >
     </section>
   {:else}
