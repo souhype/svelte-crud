@@ -18,6 +18,15 @@
     value = "";
   }
 
+  function checkItem(id: number) {
+    list.set(
+      $list.map((item) => {
+        if (item.id !== id) return item;
+        return { ...item, checked: !item.checked };
+      })
+    );
+  }
+
   function editItem(id: number, readonly: boolean) {
     list.set(
       $list.map((item) => {
@@ -83,37 +92,62 @@
   </form>
   {#if $list.length}
     <section>
-      <input type="button" on:click={showAll} value={"all"} />
-      <input type="button" on:click={showActive} value={"active"} />
-      <input type="button" on:click={showChecked} value={"checked"} />
+      <button on:click={showAll}
+        ><span class="material-symbols-outlined">
+          filter_list_off
+        </span></button
+      >
+      <button on:click={showActive}
+        ><span class="material-symbols-outlined"> filter_list </span></button
+      >
+      <button on:click={showChecked}
+        ><span
+          class="material-symbols-outlined"
+          style="transform: rotate(180deg);"
+        >
+          filter_list
+        </span></button
+      >
     </section>
     <ul>
       {#each filteredList as { id, name, checked, readonly } (id)}
         <li>
-          <input bind:checked type="checkbox" />
+          <button
+            class={checked ? "checked" : ""}
+            on:click={() => checkItem(id)}
+            ><span class="material-symbols-outlined">
+              check_circle
+            </span></button
+          >
           <input id={id.toString()} bind:value={name} {readonly} />
-          <input
+          <button
+            aria-label="Edit task"
             class="edit"
             on:click={() => editItem(id, readonly)}
-            type="button"
-            value={readonly ? "edit" : "confirm"}
-          />
-          <input
-            class="remove"
-            on:click={() => removeItem(id)}
-            type="button"
-            value="remove"
-          />
+          >
+            <span class="material-symbols-outlined">
+              {readonly ? "edit" : "edit_off"}
+            </span>
+          </button>
+          <button class="remove" on:click={() => removeItem(id)}
+            ><span class="material-symbols-outlined"> delete </span></button
+          >
         </li>
       {/each}
     </ul>
     <section>
-      <input type="button" on:click={checkAll} value={"check all"} />
-      <input type="button" on:click={uncheckAll} value={"uncheck all"} />
-      <input type="button" on:click={removeChecked} value={"remove checked"} />
+      <button on:click={checkAll}
+        ><span class="material-symbols-outlined"> done_all </span></button
+      >
+      <button on:click={uncheckAll}
+        ><span class="material-symbols-outlined"> remove_done </span></button
+      >
+      <button on:click={removeChecked}
+        ><span class="material-symbols-outlined"> clear_all </span></button
+      >
     </section>
   {:else}
-    <h1>Nothing to see here</h1>
+    <h2>Nothing to see here</h2>
   {/if}
 </main>
 
@@ -122,6 +156,23 @@
     display: grid;
     place-items: center;
     gap: 1rem;
+  }
+
+  input {
+    margin: 0.25rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    font: inherit;
+    text-transform: capitalize;
+    color: inherit;
+    background: hsl(0 0% 15%);
+  }
+
+  section {
+    display: flex;
   }
 
   ul {
@@ -133,28 +184,31 @@
   }
 
   li {
-    display: grid;
-    grid-template-columns: 0.25fr 1fr auto auto;
+    display: flex;
+    flex-direction: row;
   }
 
-  input {
+  button {
     margin: 0.25rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: none;
-    outline: 0;
+    padding: 0.75rem;
+    border: 0;
+    border-radius: 50%;
+    display: grid;
     cursor: pointer;
-    font: inherit;
-    text-transform: capitalize;
-    color: inherit;
     background: hsl(0 0% 20%);
   }
 
-  .edit {
-    background: hsl(250 50% 50%);
+  span {
+    color: hsl(0 0% 90%);
   }
 
+  .checked {
+    background: hsl(150 50% 50%);
+  }
   .remove {
     background: hsl(0 50% 50%);
+  }
+  .edit {
+    background: hsl(200 50% 50%);
   }
 </style>
