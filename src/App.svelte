@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { list } from "./stores";
+  import { uniqueId } from "./libs/uid";
 
   $: filteredList = $list;
 
   let value = "",
-    currentId = 0,
     input: HTMLInputElement = null;
 
   onMount(() => input.focus());
@@ -13,12 +13,13 @@
   function addItem() {
     list.set([
       ...$list,
-      { id: currentId++, name: value, checked: false, readonly: true },
+      { id: uniqueId(), name: value, checked: false, readonly: true },
     ]);
     value = "";
+    console.log($list);
   }
 
-  function checkItem(id: number) {
+  function checkItem(id: string) {
     list.set(
       $list.map((item) => {
         if (item.id !== id) return item;
@@ -27,7 +28,7 @@
     );
   }
 
-  function editItem(id: number, readonly: boolean) {
+  function editItem(id: string, readonly: boolean) {
     list.set(
       $list.map((item) => {
         if (item.id !== id) return item;
@@ -40,7 +41,7 @@
         .select();
   }
 
-  function removeItem(id: number) {
+  function removeItem(id: string) {
     list.set($list.filter((item) => item.id !== id));
   }
 

@@ -2,7 +2,7 @@
 /// <reference types="vite/client" />
 
 interface Item {
-  id: number;
+  id: string;
   name: string;
   checked: boolean;
   readonly: boolean;
