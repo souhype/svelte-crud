@@ -3,46 +3,5 @@ body {
   background: hsl(0 0% 10%);
   color: hsl(0 0% 90%);
   font-weight: 700;
-  font-family: 'Open Sans', sans-serif;
-}
-
-main {
-  display: grid;
-  place-items: center;
-  gap: 1.5rem;
-  padding: 1rem
-}
-
-ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-  display: grid;
-  gap: 1rem;
-}
-
-li>section {
-  display: grid;
-  grid-template-columns: .25fr 1fr auto auto;
-}
-
-input {
-  margin: .25rem;
-  padding: .5rem 1rem;
-  border-radius: 8px;
-  border: none;
-  outline: 0;
-  cursor: pointer;
-  font: inherit;
-  text-transform: capitalize;
-  color: inherit;
-  background: hsl(0 0% 20%);
-}
-
-.edit {
-  background: hsl(250 50% 50%);
-}
-
-.remove {
-  background: hsl(0 50% 50%);
+  font-family: "Open Sans", sans-serif;
 }
