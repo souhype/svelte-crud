@@ -37,7 +37,7 @@
     );
     readonly &&
       document
-        .querySelector<HTMLInputElement>(`#${CSS.escape(id.toString())}`)
+        .querySelector<HTMLInputElement>(`#${CSS.escape(id)}`)
         .select();
   }
 
@@ -120,7 +120,7 @@
               check_circle
             </span></button
           >
-          <input id={id.toString()} bind:value={name} {readonly} />
+          <input id={id} bind:value={name} {readonly} />
           <button
             aria-label="Edit task"
             class="edit"
