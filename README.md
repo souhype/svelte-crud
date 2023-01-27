@@ -1,6 +1,7 @@
 # Demo
 
 https://souhype.github.io/svelte-crud/
+(no componentization for better readability)
 
 # Svelte + TS + Vite
 
