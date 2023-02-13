@@ -2,7 +2,14 @@
 
 https://souhype.github.io/svelte-crud/
 (no componentization for better readability)
-[9,9kb]
+
+# Comparison Svelte vs React vs Solid
+
+|        | dist size | dx                                                                                                                                                                   |   |   |
+|--------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---|---|
+| React  | 142kb     | -too much overhead<br>-slow<br>-no built in state manager<br>-vdom<br><br>/jsx<br><br>+big ecosystem<br>+well established<br>+good ts support                        |   |   |
+| Svelte | 9,9kb     | -ok ts support<br><br>+own meta framework (sveltekit)<br>+no jsx<br>+no vdom<br>+no need for state manager (own stores)<br>+fast<br>+very easy (plain html, css, js) |   |   |
+| Solid  | 14,7kb    | /jsx<br><br>+own meta framework (solidstart)<br>+no need for state manager (components dont own state)<br>+fast<br>+no vdom<br>+simple                               |   |   |                             |   |   |
 
 # Svelte + TS + Vite
 
