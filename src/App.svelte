@@ -16,7 +16,6 @@
       { id: uniqueId(), name: value, checked: false, readonly: true },
     ]);
     value = "";
-    console.log($list);
   }
 
   function checkItem(id: string) {
